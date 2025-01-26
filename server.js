@@ -1,10 +1,11 @@
 //Server.js : import the app, start up the SERVER and listen
+require('dotenv').config()
 const app = require ('./app');
 const multer = require ('multer');
 
 const upload = multer({ dest: 'uploads/' });
 
-app.post('/api/generate-podcast', upload.single('audio'), (request, response) => {
+app.post('/api/generate-podcast', upload.single('audioFile'), (request, response) => {
     try{
         if(!request.file){
             return response.status(400).json({ error: 'No audio file uploaded' });
